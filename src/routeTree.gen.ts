@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminKnowledgeRouteImport } from './routes/admin.knowledge'
@@ -33,6 +34,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTeamRoute = AdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminScenariosRoute = AdminScenariosRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
+    | '/admin/team'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
+    | '/admin/team'
     | '/admin'
   id:
     | '__root__'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
+    | '/admin/team'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -171,6 +183,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/team': {
+      id: '/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminTeamRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/scenarios': {
@@ -233,6 +252,7 @@ interface AdminRouteChildren {
   AdminKnowledgeRoute: typeof AdminKnowledgeRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminScenariosRoute: typeof AdminScenariosRoute
+  AdminTeamRoute: typeof AdminTeamRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -244,6 +264,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminKnowledgeRoute: AdminKnowledgeRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminScenariosRoute: AdminScenariosRoute,
+  AdminTeamRoute: AdminTeamRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
