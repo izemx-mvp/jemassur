@@ -2,7 +2,8 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, MessageSquare, Calendar, Bell, Clock, Bot, BookOpen, Plug, Users, Sparkles } from "lucide-react";
 import { Logo } from "./Logo";
 
-const items = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const items: NavItem[] = [
   { to: "/admin", label: "Tableau de bord", icon: LayoutDashboard, exact: true },
   { to: "/admin/conversations", label: "Conversations", icon: MessageSquare },
   { to: "/admin/appointments", label: "Rendez-vous", icon: Calendar },
@@ -12,7 +13,7 @@ const items = [
   { to: "/admin/knowledge", label: "Base de connaissances", icon: BookOpen },
   { to: "/admin/integrations", label: "Intégrations", icon: Plug },
   { to: "/admin/team", label: "Équipe & accès", icon: Users },
-] as const;
+];
 
 export function AdminSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
