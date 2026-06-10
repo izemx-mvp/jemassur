@@ -45,8 +45,8 @@ function AppointmentsPage() {
             <div></div>
             {DAYS.map(d => <div key={d} className="text-center font-semibold py-2 text-muted-foreground">{d}</div>)}
             {HOURS.map(h => (
-              <>
-                <div key={h} className="text-right pr-2 py-3 text-muted-foreground">{h}</div>
+              <div key={h} className="contents">
+                <div className="text-right pr-2 py-3 text-muted-foreground">{h}</div>
                 {DAYS.map(d => {
                   const slot = slots[`${d}-${h}`];
                   return (
@@ -60,7 +60,7 @@ function AppointmentsPage() {
                     </div>
                   );
                 })}
-              </>
+              </div>
             ))}
           </div>
         </div>
