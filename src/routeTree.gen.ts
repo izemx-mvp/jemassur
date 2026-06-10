@@ -13,6 +13,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
+import { Route as AdminHoursRouteImport } from './routes/admin.hours'
 import { Route as AdminConversationsRouteImport } from './routes/admin.conversations'
 import { Route as AdminAppointmentsRouteImport } from './routes/admin.appointments'
 
@@ -36,6 +37,11 @@ const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminHoursRoute = AdminHoursRouteImport.update({
+  id: '/hours',
+  path: '/hours',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminConversationsRoute = AdminConversationsRouteImport.update({
   id: '/conversations',
   path: '/conversations',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/appointments'
     | '/admin/conversations'
+    | '/admin/hours'
     | '/admin/notifications'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/appointments'
     | '/admin/conversations'
+    | '/admin/hours'
     | '/admin/notifications'
     | '/admin'
   id:
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/appointments'
     | '/admin/conversations'
+    | '/admin/hours'
     | '/admin/notifications'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -132,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNotificationsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/hours': {
+      id: '/admin/hours'
+      path: '/hours'
+      fullPath: '/admin/hours'
+      preLoaderRoute: typeof AdminHoursRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/conversations': {
       id: '/admin/conversations'
       path: '/conversations'
@@ -152,6 +171,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAppointmentsRoute: typeof AdminAppointmentsRoute
   AdminConversationsRoute: typeof AdminConversationsRoute
+  AdminHoursRoute: typeof AdminHoursRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -159,6 +179,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAppointmentsRoute: AdminAppointmentsRoute,
   AdminConversationsRoute: AdminConversationsRoute,
+  AdminHoursRoute: AdminHoursRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
