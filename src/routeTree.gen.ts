@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
+import { Route as AdminKnowledgeRouteImport } from './routes/admin.knowledge'
 import { Route as AdminHoursRouteImport } from './routes/admin.hours'
 import { Route as AdminConversationsRouteImport } from './routes/admin.conversations'
 import { Route as AdminAppointmentsRouteImport } from './routes/admin.appointments'
@@ -43,6 +44,11 @@ const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminKnowledgeRoute = AdminKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminHoursRoute = AdminHoursRouteImport.update({
   id: '/hours',
   path: '/hours',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
   '/admin': typeof AdminIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
     | '/admin/'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
     | '/admin'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
     | '/admin/'
@@ -163,6 +175,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNotificationsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/knowledge': {
+      id: '/admin/knowledge'
+      path: '/knowledge'
+      fullPath: '/admin/knowledge'
+      preLoaderRoute: typeof AdminKnowledgeRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/hours': {
       id: '/admin/hours'
       path: '/hours'
@@ -191,6 +210,7 @@ interface AdminRouteChildren {
   AdminAppointmentsRoute: typeof AdminAppointmentsRoute
   AdminConversationsRoute: typeof AdminConversationsRoute
   AdminHoursRoute: typeof AdminHoursRoute
+  AdminKnowledgeRoute: typeof AdminKnowledgeRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminScenariosRoute: typeof AdminScenariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -200,6 +220,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAppointmentsRoute: AdminAppointmentsRoute,
   AdminConversationsRoute: AdminConversationsRoute,
   AdminHoursRoute: AdminHoursRoute,
+  AdminKnowledgeRoute: AdminKnowledgeRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminScenariosRoute: AdminScenariosRoute,
   AdminIndexRoute: AdminIndexRoute,
