@@ -15,6 +15,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminKnowledgeRouteImport } from './routes/admin.knowledge'
+import { Route as AdminIntegrationsRouteImport } from './routes/admin.integrations'
 import { Route as AdminHoursRouteImport } from './routes/admin.hours'
 import { Route as AdminConversationsRouteImport } from './routes/admin.conversations'
 import { Route as AdminAppointmentsRouteImport } from './routes/admin.appointments'
@@ -49,6 +50,11 @@ const AdminKnowledgeRoute = AdminKnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminIntegrationsRoute = AdminIntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminHoursRoute = AdminHoursRouteImport.update({
   id: '/hours',
   path: '/hours',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/admin/appointments': typeof AdminAppointmentsRoute
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/knowledge': typeof AdminKnowledgeRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/scenarios': typeof AdminScenariosRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/integrations'
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/integrations'
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/admin/appointments'
     | '/admin/conversations'
     | '/admin/hours'
+    | '/admin/integrations'
     | '/admin/knowledge'
     | '/admin/notifications'
     | '/admin/scenarios'
@@ -182,6 +194,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminKnowledgeRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/integrations': {
+      id: '/admin/integrations'
+      path: '/integrations'
+      fullPath: '/admin/integrations'
+      preLoaderRoute: typeof AdminIntegrationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/hours': {
       id: '/admin/hours'
       path: '/hours'
@@ -210,6 +229,7 @@ interface AdminRouteChildren {
   AdminAppointmentsRoute: typeof AdminAppointmentsRoute
   AdminConversationsRoute: typeof AdminConversationsRoute
   AdminHoursRoute: typeof AdminHoursRoute
+  AdminIntegrationsRoute: typeof AdminIntegrationsRoute
   AdminKnowledgeRoute: typeof AdminKnowledgeRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminScenariosRoute: typeof AdminScenariosRoute
@@ -220,6 +240,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAppointmentsRoute: AdminAppointmentsRoute,
   AdminConversationsRoute: AdminConversationsRoute,
   AdminHoursRoute: AdminHoursRoute,
+  AdminIntegrationsRoute: AdminIntegrationsRoute,
   AdminKnowledgeRoute: AdminKnowledgeRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminScenariosRoute: AdminScenariosRoute,
