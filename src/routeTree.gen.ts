@@ -9,38 +9,168 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminTeamRouteImport } from './routes/admin.team'
+import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
+import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
+import { Route as AdminKnowledgeRouteImport } from './routes/admin.knowledge'
+import { Route as AdminIntegrationsRouteImport } from './routes/admin.integrations'
+import { Route as AdminHoursRouteImport } from './routes/admin.hours'
+import { Route as AdminConversationsRouteImport } from './routes/admin.conversations'
+import { Route as AdminAppointmentsRouteImport } from './routes/admin.appointments'
 
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTeamRoute = AdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScenariosRoute = AdminScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKnowledgeRoute = AdminKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminIntegrationsRoute = AdminIntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminHoursRoute = AdminHoursRouteImport.update({
+  id: '/hours',
+  path: '/hours',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConversationsRoute = AdminConversationsRouteImport.update({
+  id: '/conversations',
+  path: '/conversations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAppointmentsRoute = AdminAppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/appointments': typeof AdminAppointmentsRoute
+  '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
+  '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/appointments': typeof AdminAppointmentsRoute
+  '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
+  '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/appointments': typeof AdminAppointmentsRoute
+  '/admin/conversations': typeof AdminConversationsRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/integrations': typeof AdminIntegrationsRoute
+  '/admin/knowledge': typeof AdminKnowledgeRoute
+  '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/admin/appointments'
+    | '/admin/conversations'
+    | '/admin/hours'
+    | '/admin/integrations'
+    | '/admin/knowledge'
+    | '/admin/notifications'
+    | '/admin/scenarios'
+    | '/admin/team'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/appointments'
+    | '/admin/conversations'
+    | '/admin/hours'
+    | '/admin/integrations'
+    | '/admin/knowledge'
+    | '/admin/notifications'
+    | '/admin/scenarios'
+    | '/admin/team'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/admin/appointments'
+    | '/admin/conversations'
+    | '/admin/hours'
+    | '/admin/integrations'
+    | '/admin/knowledge'
+    | '/admin/notifications'
+    | '/admin/scenarios'
+    | '/admin/team'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +178,102 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/team': {
+      id: '/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminTeamRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/scenarios': {
+      id: '/admin/scenarios'
+      path: '/scenarios'
+      fullPath: '/admin/scenarios'
+      preLoaderRoute: typeof AdminScenariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/notifications': {
+      id: '/admin/notifications'
+      path: '/notifications'
+      fullPath: '/admin/notifications'
+      preLoaderRoute: typeof AdminNotificationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/knowledge': {
+      id: '/admin/knowledge'
+      path: '/knowledge'
+      fullPath: '/admin/knowledge'
+      preLoaderRoute: typeof AdminKnowledgeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/integrations': {
+      id: '/admin/integrations'
+      path: '/integrations'
+      fullPath: '/admin/integrations'
+      preLoaderRoute: typeof AdminIntegrationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/hours': {
+      id: '/admin/hours'
+      path: '/hours'
+      fullPath: '/admin/hours'
+      preLoaderRoute: typeof AdminHoursRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/conversations': {
+      id: '/admin/conversations'
+      path: '/conversations'
+      fullPath: '/admin/conversations'
+      preLoaderRoute: typeof AdminConversationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/appointments': {
+      id: '/admin/appointments'
+      path: '/appointments'
+      fullPath: '/admin/appointments'
+      preLoaderRoute: typeof AdminAppointmentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAppointmentsRoute: typeof AdminAppointmentsRoute
+  AdminConversationsRoute: typeof AdminConversationsRoute
+  AdminHoursRoute: typeof AdminHoursRoute
+  AdminIntegrationsRoute: typeof AdminIntegrationsRoute
+  AdminKnowledgeRoute: typeof AdminKnowledgeRoute
+  AdminNotificationsRoute: typeof AdminNotificationsRoute
+  AdminScenariosRoute: typeof AdminScenariosRoute
+  AdminTeamRoute: typeof AdminTeamRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAppointmentsRoute: AdminAppointmentsRoute,
+  AdminConversationsRoute: AdminConversationsRoute,
+  AdminHoursRoute: AdminHoursRoute,
+  AdminIntegrationsRoute: AdminIntegrationsRoute,
+  AdminKnowledgeRoute: AdminKnowledgeRoute,
+  AdminNotificationsRoute: AdminNotificationsRoute,
+  AdminScenariosRoute: AdminScenariosRoute,
+  AdminTeamRoute: AdminTeamRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
