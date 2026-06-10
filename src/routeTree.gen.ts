@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminHoursRouteImport } from './routes/admin.hours'
 import { Route as AdminConversationsRouteImport } from './routes/admin.conversations'
@@ -30,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScenariosRoute = AdminScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/admin/conversations': typeof AdminConversationsRoute
   '/admin/hours': typeof AdminHoursRoute
   '/admin/notifications': typeof AdminNotificationsRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/admin/conversations'
     | '/admin/hours'
     | '/admin/notifications'
+    | '/admin/scenarios'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/admin/conversations'
     | '/admin/hours'
     | '/admin/notifications'
+    | '/admin/scenarios'
     | '/admin'
   id:
     | '__root__'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/admin/conversations'
     | '/admin/hours'
     | '/admin/notifications'
+    | '/admin/scenarios'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -135,6 +147,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/scenarios': {
+      id: '/admin/scenarios'
+      path: '/scenarios'
+      fullPath: '/admin/scenarios'
+      preLoaderRoute: typeof AdminScenariosRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/notifications': {
@@ -173,6 +192,7 @@ interface AdminRouteChildren {
   AdminConversationsRoute: typeof AdminConversationsRoute
   AdminHoursRoute: typeof AdminHoursRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
+  AdminScenariosRoute: typeof AdminScenariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -181,6 +201,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminConversationsRoute: AdminConversationsRoute,
   AdminHoursRoute: AdminHoursRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
+  AdminScenariosRoute: AdminScenariosRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
