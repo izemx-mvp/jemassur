@@ -34,7 +34,7 @@ export function AdminSidebar() {
           return (
             <Link
               key={it.to}
-              to={it.to}
+              to={it.to as "/admin"}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition ${active ? "bg-sidebar-accent text-white shadow-soft" : "hover:bg-white/5 text-sidebar-foreground/80"}`}
             >
               <Icon className="size-4" />
