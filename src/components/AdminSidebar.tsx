@@ -19,12 +19,15 @@ export function AdminSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
     <aside className="w-64 shrink-0 bg-sidebar text-sidebar-foreground flex flex-col border-r border-sidebar-border">
-      <div className="p-5 border-b border-sidebar-border bg-white/5">
-        <div className="flex items-center gap-2 mb-1">
-          <Logo className="h-8 bg-white rounded-md p-1" />
-        </div>
-        <div className="text-[10px] uppercase tracking-widest opacity-60 mt-2 flex items-center gap-1">
-          <Sparkles className="size-3" /> Admin Suite
+      <div className="p-5 border-b border-sidebar-border">
+        <div className="flex items-center gap-3 mb-1">
+          <Logo className="h-10" />
+          <div className="flex flex-col">
+            <span className="text-lg font-bold tracking-tight text-white leading-none">Jemassur</span>
+            <span className="text-[10px] uppercase tracking-widest text-sidebar-foreground/60 mt-0.5 flex items-center gap-1">
+              <Sparkles className="size-3" /> Admin Suite
+            </span>
+          </div>
         </div>
       </div>
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
