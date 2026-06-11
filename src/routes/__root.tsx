@@ -45,10 +45,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Cette page n'a pas pu charger
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Une erreur s'est produite de notre côté. Vous pouvez réessayer ou retourner au tableau de bord.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
